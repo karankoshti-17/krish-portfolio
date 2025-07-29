@@ -703,11 +703,11 @@
         <div class="content__block grid-block block-grid-large">
           <div class="form-container">
             <!-- Success Message -->
-            <div id="form-success" class="form__reply centered text-center" style="display:none;">
+            <!-- <div id="form-success" class="form__reply centered text-center" style="display:none;">
               <i class="ph-bold ph-smiley reply__icon"></i>
               <p class="reply__title">Done!</p>
               <span class="reply__text">Thanks for your message. I'll get back as soon as possible.</span>
-            </div>
+            </div> -->
 
             <!-- Contact Form -->
             <form name="contact" method="POST" data-netlify="true" id="contact-form">
@@ -738,6 +738,13 @@
                 </div>
               </div>
             </form>
+
+            <!-- Success Message stays below form -->
+            <div id="form-success" class="form__reply centered text-center" style="display:none; margin-top: 20px;">
+              <i class="ph-bold ph-smiley reply__icon"></i>
+              <p class="reply__title">Done!</p>
+              <span class="reply__text">Thanks for your message. I'll get back as soon as possible.</span>
+            </div>
           </div>
         </div>
       </section>
@@ -820,7 +827,11 @@
           form.reset();
         })
         .catch(error => {
-          alert('Form submission failed: ' + error);
+          document.getElementById('form-success').style.display = 'block';
+          document.getElementById('form-success').innerHTML =
+            `<i class="ph-bold ph-warning reply__icon"></i>
+         <p class="reply__title">Oops!</p>
+         <span class="reply__text">Something went wrong. Please try again.</span>`;
         });
     });
   </script>
