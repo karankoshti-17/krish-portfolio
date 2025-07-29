@@ -809,16 +809,19 @@
       event.preventDefault();
       const form = event.target;
       const data = new FormData(form);
+
       fetch('/', {
         method: 'POST',
         body: new URLSearchParams(data).toString(),
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       })
         .then(() => {
-          form.style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
+          form.reset();
         })
-        .catch(error => alert('Form submission failed: ' + error));
+        .catch(error => {
+          alert('Form submission failed: ' + error);
+        });
     });
   </script>
 
